@@ -3,10 +3,12 @@
 #include "graph.h""
 
 #include <cassert>
+#include<iostream>
 
 
 
 void run_tests(){
+    std::cout << "Start testów!";
     // Sprawdzenie rozmiaru 
     graph g5(5);
     assert(g5.size == 5);
@@ -46,6 +48,5 @@ void run_tests(){
         // Liczba wierzchołków
         assert(g4.vortex_count() == 4);        
     
-        
-    
+    std::cout << std::endl << "Testy zakończone pomyślnie :)";    
 }
