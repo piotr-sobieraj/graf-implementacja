@@ -2,6 +2,12 @@
 #include "graph.h"
 using namespace std;
 
+template <typename T>
+int sgn(T value) {
+    return (T(0) < value) - (value < T(0));
+}
+
+
 graph::graph(const int &s){
     this->size = s;
     this -> vortex = new int*[this->size];
@@ -34,3 +40,40 @@ bool graph::is_directed(){
     
     return false;
 }
+
+
+unsigned int graph::edge_count(){
+    unsigned int s = 0;
+
+    if (this->is_directed()){
+        for(int i = 0; i < this->size; i++)
+            for(int j = 0; j < this->size; j++)
+                s += this->vortex[i][j];
+    }
+    else {
+        for(int i = 0; i < this->size; i++)
+            for(int j = i; j < this->size; j++)
+                s += this->vortex[i][j];
+    }
+    
+    return s;        
+}
+
+unsigned int graph::vortex_count(){
+    unsigned int s = 0;
+
+    if(this->is_directed()){
+        for(int i = 0; i < this->size; i++)
+            for(int j = 0; j < this->size; j++)
+                if (i != j)                
+                    s += sgn(this->vortex[i][j]);
+    }
+    else{
+        for(int i = 0; i < this->size; i++)
+            for(int j = i + 1; j < this->size; j++)
+                s += sgn(this->vortex[i][j]);        
+    }
+        
+    return s;  
+}
+
