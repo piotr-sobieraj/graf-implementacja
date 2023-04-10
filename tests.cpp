@@ -1,6 +1,6 @@
 #pragma once
 #include "tests.h"
-#include "graph.h""
+#include "graph.h"
 
 #include <cassert>
 #include<iostream>
@@ -27,8 +27,13 @@ void run_tests(){
         assert(g3.edge_count() == 5);
 
         // Liczba wierzchołków
-        assert(g3.vortex_count() == 3);        
+        assert(g3.vortex_count() == 3);      
 
+        // Stopień wejściowy wierzchołka 0
+        assert(g3.degin(0) == nullptr);
+
+        // Stopień wejściowy wierzchołka 0
+        assert(g3.degout(0) == nullptr);
     
 
     //Graf skierowany
@@ -46,7 +51,20 @@ void run_tests(){
         assert(g4.edge_count() == 6);
 
         // Liczba wierzchołków
-        assert(g4.vortex_count() == 4);        
+        assert(g4.vortex_count() == 4);    
+
+        // Stopień wejściowy wierzchołków
+        assert(*g4.degin(0) == 2);
+        assert(*g4.degin(1) == 1);
+        assert(*g4.degin(2) == 3);
+        assert(*g4.degin(3) == 0);
+
+        // Stopień wyjściowy wierzchołków
+        assert(*g4.degout(0) == 2);
+        assert(*g4.degout(1) == 2);
+        assert(*g4.degout(2) == 0);
+        assert(*g4.degout(3) == 2);
+            
     
     std::cout << std::endl << "Testy zakończone pomyślnie :)";    
 }

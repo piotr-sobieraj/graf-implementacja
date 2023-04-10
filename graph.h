@@ -8,6 +8,9 @@ class graph{
         bool is_directed();
         unsigned int edge_count();
         unsigned int vortex_count();
+
+        int *degin(const int &i);
+        int *degout(const int &j);        
         
         int size;
         int **vortex;
