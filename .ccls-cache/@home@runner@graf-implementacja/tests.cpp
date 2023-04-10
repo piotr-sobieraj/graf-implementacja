@@ -34,6 +34,12 @@ void run_tests(){
 
         // Stopień wejściowy wierzchołka 0
         assert(g3.degout(0) == nullptr);
+
+        // Stopień wierzchołków
+        assert(g3.deg(0) == 3);
+        assert(g3.deg(1) == 3);
+        assert(g3.deg(2) == 3);
+        
     
 
     //Graf skierowany
@@ -64,6 +70,13 @@ void run_tests(){
         assert(*g4.degout(1) == 2);
         assert(*g4.degout(2) == 0);
         assert(*g4.degout(3) == 2);
+
+        // Stopień wierzchołków
+        assert(g4.deg(0) == 4);
+        assert(g4.deg(1) == 3);
+        assert(g4.deg(2) == 3);
+        assert(g4.deg(3) == 2);
+    
             
     
     std::cout << std::endl << "Testy zakończone pomyślnie :)";    

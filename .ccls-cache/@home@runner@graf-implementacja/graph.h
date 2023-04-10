@@ -9,8 +9,10 @@ class graph{
         unsigned int edge_count();
         unsigned int vortex_count();
 
-        int *degin(const int &i);
-        int *degout(const int &j);        
+        unsigned int *degin(const int &i);
+        unsigned int *degout(const int &j);     
+        unsigned int deg(const int &j);     
+
         
         int size;
         int **vortex;

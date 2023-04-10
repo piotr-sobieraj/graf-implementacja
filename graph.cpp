@@ -77,11 +77,11 @@ unsigned int graph::vortex_count(){
     return s;  
 }
 
-int *graph::degin(const int &i){
+unsigned int *graph::degin(const int &i){
     if (!this -> is_directed())
         return nullptr;
     
-    static int deg;
+    static unsigned int deg;
     deg = 0;
     
     for(int j = 0; j < this->size; j++)
@@ -91,11 +91,11 @@ int *graph::degin(const int &i){
 }
 
 
-int *graph::degout(const int &i){
+unsigned int *graph::degout(const int &i){
     if (!this -> is_directed())
         return nullptr;
     
-    static int deg = 0;
+    static unsigned int deg = 0;
     deg = 0;
     
     for(int j = 0; j < this->size; j++)
@@ -104,4 +104,19 @@ int *graph::degout(const int &i){
     return &deg;    
 }
 
+
+unsigned int graph::deg(const int &i){
+    if(this -> is_directed())
+    {
+        return *degin(i) + *degout(i);
+    }
+    else
+    {
+        unsigned int deg = 0;
+        for(int j = 0; j < this->size; j++)
+            deg += this->vortex[i][j];
+
+        return deg;
+    }
+}
 
