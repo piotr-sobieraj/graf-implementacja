@@ -30,11 +30,26 @@ void run_tests(){
         assert(g3.vortex_count() == 3);      
 
         // Stopień wejściowy wierzchołka 0
-        assert(g3.degin(0) == nullptr);
+        bool thrown = false;
+        try{
+            g3.degin(0);            
+        }
+        catch(const std::invalid_argument){
+            thrown = true;
+        }
+        assert(thrown);
 
         // Stopień wejściowy wierzchołka 0
-        assert(g3.degout(0) == nullptr);
-
+        bool thrown1 = false;
+        try{
+            g3.degout(0);            
+        }
+        catch(const std::invalid_argument){
+            thrown1 = true;
+        }
+        assert(thrown1);
+        
+        
         // Stopień wierzchołków
         assert(g3.deg(0) == 3);
         assert(g3.deg(1) == 3);
@@ -60,16 +75,16 @@ void run_tests(){
         assert(g4.vortex_count() == 4);    
 
         // Stopień wejściowy wierzchołków
-        assert(*g4.degin(0) == 2);
-        assert(*g4.degin(1) == 1);
-        assert(*g4.degin(2) == 3);
-        assert(*g4.degin(3) == 0);
+        assert(g4.degin(0) == 2);
+        assert(g4.degin(1) == 1);
+        assert(g4.degin(2) == 3);
+        assert(g4.degin(3) == 0);
 
         // Stopień wyjściowy wierzchołków
-        assert(*g4.degout(0) == 2);
-        assert(*g4.degout(1) == 2);
-        assert(*g4.degout(2) == 0);
-        assert(*g4.degout(3) == 2);
+        assert(g4.degout(0) == 2);
+        assert(g4.degout(1) == 2);
+        assert(g4.degout(2) == 0);
+        assert(g4.degout(3) == 2);
 
         // Stopień wierzchołków
         assert(g4.deg(0) == 4);

@@ -8,12 +8,13 @@ int sgn(T value) {
 }
 
 
-graph::graph(const int &s){
+graph::graph(const int& s){
     this->size = s;
     this -> vortex = new int*[this->size];
     for (int i = 0; i < this->size; i++)
         this->vortex[i] = new int[this->size];
 }
+
 
 void graph::print(){
     cout << endl;
@@ -26,11 +27,13 @@ void graph::print(){
     }
 }   
 
-void graph::set_vortex(const int *values){
+
+void graph::set_vortex(const int* values){
     for(int i = 0; i < this->size; i++)
         for (int j = 0; j < this->size; j++)
             this->vortex[i][j] = values[i * this->size + j];
 }
+
 
 bool graph::is_directed(){
     for(int i = 0; i < this->size; i++)
@@ -59,6 +62,7 @@ unsigned int graph::edge_count(){
     return s;        
 }
 
+
 unsigned int graph::vortex_count(){
     unsigned int s = 0;
 
@@ -77,38 +81,38 @@ unsigned int graph::vortex_count(){
     return s;  
 }
 
-unsigned int *graph::degin(const int &i){
+
+unsigned int graph::degin(const int& i){
     if (!this -> is_directed())
-        return nullptr;
+        throw std::invalid_argument("Wywołano degin dla grafu nieskierowanego.");
     
-    static unsigned int deg;
-    deg = 0;
+    unsigned int deg = 0;
     
     for(int j = 0; j < this->size; j++)
         deg += this->vortex[j][i];
 
-    return &deg;    
+    return deg;    
 }
 
 
-unsigned int *graph::degout(const int &i){
-    if (!this -> is_directed())
-        return nullptr;
-    
-    static unsigned int deg = 0;
-    deg = 0;
+unsigned int graph::degout(const int& i){
+    if (!this -> is_directed()){
+        throw std::invalid_argument("Wywołano degout dla grafu nieskierowanego.");        
+    }
+        
+    unsigned int deg = 0;
     
     for(int j = 0; j < this->size; j++)
         deg += this->vortex[i][j];
         
-    return &deg;    
+    return deg;    
 }
 
 
-unsigned int graph::deg(const int &i){
+unsigned int graph::deg(const int& i){
     if(this -> is_directed())
     {
-        return *degin(i) + *degout(i);
+        return degin(i) + degout(i);
     }
     else
     {
