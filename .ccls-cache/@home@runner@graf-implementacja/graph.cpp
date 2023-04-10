@@ -123,4 +123,3 @@ unsigned int graph::deg(const int& i){
         return deg;
     }
 }
-
